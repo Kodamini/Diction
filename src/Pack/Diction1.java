@@ -71,19 +71,13 @@ public  class Diction1
                     System.out.println("Введите ваше слово с заглавной буквы: ");
                     String Srch3 = search.nextLine();
 
-                    try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePathDiction1));
-                            BufferedReader BR = new BufferedReader(new FileReader(filePathDiction1))) {
-
-
-                    /*
                     if (map.containsKey(Srch3)) {
                         map.remove(Srch3);
                         System.out.println("Слово " + Srch3 + " удалено ");
-
-                        System.out.println(map.entrySet());
                     }
-                    */
-                        }
+
+
+
                     break;
 
                 case "4":
