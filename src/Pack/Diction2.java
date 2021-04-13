@@ -4,19 +4,25 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
-import static java.lang.Boolean.*;
+
+class PathDic2{
+
+    String filePathDiction2 = "C:\\Project\\Diction\\src\\Pack\\diction2.txt";
+    File file = new File(filePathDiction2);
+}
 
 public class Diction2
 {
+
+
     public static void main() throws IOException {
 
         while(true) {
+            PathDic2 pathDic = new PathDic2();
 
-            String filePathDiction2 = "C:\\Project\\Diction\\src\\diction2.txt";
-            File file = new File(filePathDiction2);
 
             Properties properties = new Properties();
-            properties.load(new FileReader(file));
+            properties.load(new FileReader(pathDic.file));
             HashMap<String, String> map = new HashMap(properties);
 
 
@@ -80,31 +86,48 @@ public class Diction2
                             case "3":
 
 
-                                System.out.println("Введите ваше слово с заглавной буквы: ");
-                                String Srch3 = search.nextLine();
+                                try {
+                                    File inputFile = new File( "C:\\Project\\Diction\\src\\Pack\\diction2.txt");
+                                    File tempFile = new File("C:\\Project\\Diction\\src\\Pack\\file2.txt");
 
-                                if (Srch3.length() > 4)
-                                {System.out.println(Srch3 + " превышает 5 символов");
-                                    Diction2.main();
-                                }else {
-                                    if (Srch3.length() < 4) {
-                                        System.out.println(Srch3 + " не содержит 5 символов");
-                                        Diction2.main();}
+
+
+                                    BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                                    BufferedWriter tempWriter = new BufferedWriter(new FileWriter(tempFile));
+
+
+
+                                    System.out.println("Введите пару слов <Key = Value>: ");
+                                    String Srch3 = search.nextLine();
+                                    String current;
+                                    while ((current = reader.readLine()) != null) {
+                                        if (current.equals(Srch3))
+                                            continue;
+                                        tempWriter.write(current + "\n");
+
+                                    }
+
+                                    reader.close();
+                                    tempWriter.close();
+
+
+                                    inputFile.delete();
+
+
+                                    if(tempFile.renameTo(inputFile))
+                                    {System.out.println("Успешно удалено!!!");}
+                                    else
+                                    {System.out.println("Ошибка! Не удалено");}
+
+
+
+                                }catch (IOException e){
+                                    e.printStackTrace();
                                 }
-
-                                if (map.containsKey(Srch3)) {
-                                    map.remove(Srch3);
-                                    System.out.println("Слово " + Srch3 + " удалено ");
-                                }
-
-
-
-
-                            break;
-
+                                break;
                             case "4":
 
-                                try(FileWriter writer = new FileWriter(filePathDiction2,true);) {
+                                try(FileWriter writer = new FileWriter(pathDic.filePathDiction2,true);) {
                                     System.out.println("Введите словоо");
                                     String Srch4 = search.nextLine();
                                     System.out.println("Введите перевод");
@@ -133,6 +156,7 @@ public class Diction2
                                     writer.write(" = ");
                                     writer.write(Srch5);
                                     writer.write("\n");
+
 
                                 }catch(IOException ex){
 
@@ -183,31 +207,47 @@ public class Diction2
                             break;
 
                             case "3":
-                                System.out.println("Введите ваше слово");
-                                String Srch3 = search.nextLine();
+                                System.out.println("Введите ваше слово с заглавной буквы: ");
+                                try {
+                                    File inputFile = new File("C:\\Project\\Diction\\src\\Pack\\diction2.txt");
+                                    File tempFile = new File("C:\\Project\\Diction\\src\\Pack\\file2.txt");
 
-                                if (Srch3.length() > 5) {
-                                    System.out.println(Srch3 + " превышает 5 символов");
-                                    Diction2.main();
-                                } else {
-                                    if (Srch3.length() < 5) {
-                                        System.out.println(Srch3 + " не содержит 5 символов");
-                                        Diction2.main();}
-                                }
+                                    File finalFile = new File("C:\\Project\\Diction\\src\\Pack\\diction2.txt");
 
-                                if (map.containsValue(Srch3)) {
-                                    map.remove(Srch3);
-                                    System.out.println("Слово " + Srch3 + " удалено ");
+
+                                    BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                                    BufferedWriter tempWriter = new BufferedWriter(new FileWriter(tempFile));
 
 
 
+                                    String Srch3 = search.nextLine();
+                                    String current;
+                                    while ((current = reader.readLine()) != null) {
+                                        if (current.equals(Srch3))
+                                            continue;
+                                        tempWriter.write(current + "\n");
+
+                                    }
+
+
+                                    tempWriter.close();
+                                    reader.close();
+
+                                    inputFile.delete();
+
+                                    if(tempFile.renameTo(finalFile))
+                                    {System.out.println("Успешно удалено!!!");}
+                                    else
+                                    {System.out.println("Ошибка! Не удалено");}
+
+                                }catch (IOException e){
+                                    e.printStackTrace();
                                 }
 
                                 break;
-
                             case "4":
 
-                                try(FileWriter writer = new FileWriter(filePathDiction2,true);) {
+                                try(FileWriter writer = new FileWriter(pathDic.filePathDiction2,true);) {
                                     System.out.println("Введите словоо");
                                     String Srch5 = search.nextLine();
                                     System.out.println("Введите перевод");
@@ -255,6 +295,7 @@ public class Diction2
                     case "3":
                         System.out.println("Программа завершена");
                         System.exit(0);
+                        break;
 
                     case "4":
                         Diction1 dict1 = new Diction1();

@@ -4,33 +4,27 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
+class PathDic1{
+
+    String filePathDiction1 = "C:\\Project\\Diction\\src\\Pack\\diction1.txt";
+    File file = new File(filePathDiction1);
+}
+
+
+
 public  class Diction1
 {
     public static void main() throws IOException {
 
         while (true) {
+            PathDic1 pathDic = new PathDic1();
 
-            String filePathDiction1 = "C:\\Project\\Diction\\src\\diction1.txt";
-            File file = new File(filePathDiction1);
 
             Properties properties = new Properties();
-            properties.load(new FileReader(file));
+            properties.load(new FileReader(pathDic.file));
             HashMap<String, String> map = new HashMap(properties);
 
 
-            try(BufferedReader BR = new BufferedReader(new FileReader(filePathDiction1)))
-            {
-
-                String read;
-                while((read = BR.readLine()) != null)
-                {
-
-                }
-            
-            }catch(IOException io)
-            {
-                io.printStackTrace();
-            }
 
             System.out.println("Данный словарь состоит из " + map.size() + " слов(а)");
 
@@ -67,32 +61,58 @@ public  class Diction1
                     break;
 
                 case "3":
-
                     System.out.println("Введите ваше слово с заглавной буквы: ");
-                    String Srch3 = search.nextLine();
+                    try {
+                        File inputFile = new File("C:\\Project\\Diction\\src\\Pack\\diction1.txt");
+                        File tempFile = new File("C:\\Project\\Diction\\src\\Pack\\file1.txt");
 
-                    if (map.containsKey(Srch3)) {
-                        map.remove(Srch3);
-                        System.out.println("Слово " + Srch3 + " удалено ");
+
+
+                        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                        BufferedWriter tempWriter = new BufferedWriter(new FileWriter(tempFile));
+
+
+
+                        String Srch3 = search.nextLine();
+                        String current;
+                        while ((current = reader.readLine()) != null) {
+                            if (current.equals(Srch3))
+                                continue;
+                            tempWriter.write(current + "\n");
+
+                        }
+
+
+                        tempWriter.close();
+                        reader.close();
+
+                        inputFile.delete();
+
+                        if(tempFile.renameTo(inputFile))
+                        {System.out.println("Успешно удалено!!!");}
+                        else
+                        {System.out.println("Ошибка! Не удалено");}
+
+                    }catch (IOException e){
+                        e.printStackTrace();
                     }
-
-
 
                     break;
 
                 case "4":
-            try(FileWriter writer = new FileWriter(filePathDiction1,true);) {
-            System.out.println("Введите словоо");
-            String Srch4 = search.nextLine();
-            System.out.println("Введите перевод");
-            String Srch5 = search.nextLine();
-            writer.write(Srch4);
-            writer.write(" = ");
-            writer.write(Srch5);
-            writer.write("\n");
-            }catch(IOException ex){
+                    try(FileWriter writer = new FileWriter(pathDic.filePathDiction1,true);) {
+                        System.out.println("Введите словоо");
+                        String Srch4 = search.nextLine();
+                        System.out.println("Введите перевод");
+                        String Srch5 = search.nextLine();
+                        writer.write(Srch4);
+                        writer.write(" = ");
+                        writer.write(Srch5);
+                        writer.write("\n");
 
-             System.out.println(ex.getMessage());}
+                    }catch(IOException ex){
+
+                        System.out.println(ex.getMessage());}
 
                     break;
 
