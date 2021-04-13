@@ -1,0 +1,6 @@
+Just = 12345
+DoIt = 67890
+Asur = 57681
+Duck = 00000
+Room = 45127
+From = 65731
