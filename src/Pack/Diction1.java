@@ -6,7 +6,7 @@ import java.lang.*;
 
 class PathDic1{
 
-    String filePathDiction1 = "C:\\Project\\Diction\\src\\Pack\\diction1.txt";
+    String filePathDiction1 = "src" + File.separator + "Pack" + File.separator + "diction1.txt";
     File file = new File(filePathDiction1);
 }
 
@@ -63,8 +63,8 @@ public  class Diction1
                 case "3":
                     System.out.println("Введите ваше слово с заглавной буквы: ");
                     try {
-                        File inputFile = new File("C:\\Project\\Diction\\src\\Pack\\diction1.txt");
-                        File tempFile = new File("C:\\Project\\Diction\\src\\Pack\\file1.txt");
+                        File inputFile = new File("src" + File.separator + "Pack" + File.separator + "diction1.txt");
+                        File tempFile = new File("src" + File.separator + "Pack" + File.separator + "file1.txt");
 
 
 
@@ -101,7 +101,7 @@ public  class Diction1
 
                 case "4":
                     try(FileWriter writer = new FileWriter(pathDic.filePathDiction1,true);) {
-                        System.out.println("Введите словоо");
+                        System.out.println("Введите слово");
                         String Srch4 = search.nextLine();
                         System.out.println("Введите перевод");
                         String Srch5 = search.nextLine();

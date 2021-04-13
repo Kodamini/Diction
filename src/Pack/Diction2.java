@@ -7,7 +7,7 @@ import java.lang.*;
 
 class PathDic2{
 
-    String filePathDiction2 = "C:\\Project\\Diction\\src\\Pack\\diction2.txt";
+    String filePathDiction2 = "src" + File.separator + "Pack" + File.separator + "diction2.txt";
     File file = new File(filePathDiction2);
 }
 
@@ -87,8 +87,8 @@ public class Diction2
 
 
                                 try {
-                                    File inputFile = new File( "C:\\Project\\Diction\\src\\Pack\\diction2.txt");
-                                    File tempFile = new File("C:\\Project\\Diction\\src\\Pack\\file2.txt");
+                                    File inputFile = new File( "src" + File.separator + "Pack" + File.separator + "diction2.txt");
+                                    File tempFile = new File("src" + File.separator + "Pack" + File.separator + "file2.txt");
 
 
 
@@ -128,7 +128,7 @@ public class Diction2
                             case "4":
 
                                 try(FileWriter writer = new FileWriter(pathDic.filePathDiction2,true);) {
-                                    System.out.println("Введите словоо");
+                                    System.out.println("Введите слово");
                                     String Srch4 = search.nextLine();
                                     System.out.println("Введите перевод");
                                     String Srch5 = search.nextLine();
@@ -209,10 +209,9 @@ public class Diction2
                             case "3":
                                 System.out.println("Введите ваше слово с заглавной буквы: ");
                                 try {
-                                    File inputFile = new File("C:\\Project\\Diction\\src\\Pack\\diction2.txt");
-                                    File tempFile = new File("C:\\Project\\Diction\\src\\Pack\\file2.txt");
 
-                                    File finalFile = new File("C:\\Project\\Diction\\src\\Pack\\diction2.txt");
+                                    File inputFile = new File( "src" + File.separator + "Pack" + File.separator + "diction2.txt");
+                                    File tempFile = new File("src" + File.separator + "Pack" + File.separator + "file2.txt");
 
 
                                     BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -235,7 +234,7 @@ public class Diction2
 
                                     inputFile.delete();
 
-                                    if(tempFile.renameTo(finalFile))
+                                    if(tempFile.renameTo(inputFile))
                                     {System.out.println("Успешно удалено!!!");}
                                     else
                                     {System.out.println("Ошибка! Не удалено");}
@@ -248,7 +247,7 @@ public class Diction2
                             case "4":
 
                                 try(FileWriter writer = new FileWriter(pathDic.filePathDiction2,true);) {
-                                    System.out.println("Введите словоо");
+                                    System.out.println("Введите слово");
                                     String Srch5 = search.nextLine();
                                     System.out.println("Введите перевод");
                                     String Srch4 = search.nextLine();
